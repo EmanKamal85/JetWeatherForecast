@@ -1,15 +1,10 @@
 package com.example.jetweatherforcast.screens.main
 
-import android.util.Log
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.jetweatherforcast.data.DataOrException
 import com.example.jetweatherforcast.model.Weather
 import com.example.jetweatherforcast.repository.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,8 +12,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val repository : WeatherRepository)
     : ViewModel(){
 
-        suspend fun getWeather(city : String) : DataOrException<Weather, Boolean, Exception>{
-            return repository.getWeather(cityQuery = city)
+        suspend fun getWeather(city: String, units: String) : DataOrException<Weather, Boolean, Exception>{
+            return repository.getWeather(cityQuery = city, units = units)
 
         }
 //        val data : MutableState<DataOrException<Weather, Boolean, Exception>>

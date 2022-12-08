@@ -131,7 +131,10 @@ fun SunriseAndSunSet(weather: WeatherItem) {
 }
 
 @Composable
-fun HumidityWindPressureRow(weather: WeatherItem) {
+fun HumidityWindPressureRow(weather: WeatherItem, isImperial : Boolean) {
+
+    val isImperialPressure = if (isImperial) "psi" else "bar"
+    val isImperialWind = if(isImperial) "mph" else "m/s"
     Row(modifier = Modifier
         .padding(12.dp)
         .fillMaxWidth(),
@@ -152,7 +155,7 @@ fun HumidityWindPressureRow(weather: WeatherItem) {
                 contentDescription = "Pressure Icon",
                 modifier = Modifier.size(20.dp))
 
-            Text(text = "${weather.humidity} psi",
+            Text(text = "${weather.pressure} $isImperialPressure",
                 style = MaterialTheme.typography.caption)
         }
 
@@ -161,7 +164,7 @@ fun HumidityWindPressureRow(weather: WeatherItem) {
                 contentDescription = "Wind Icon",
                 modifier = Modifier.size(20.dp))
 
-            Text(text = "${weather.humidity} mph",
+            Text(text = "${formatDecimal(weather.speed)} $isImperialWind ",
                 style = MaterialTheme.typography.caption)
         }
 
